@@ -1,9 +1,9 @@
-export interface Word10 {
-  count: number;
-  word: string;
+export interface WordEntry {
+  readonly count: number;
+  readonly word: string;
 }
 
-export const data: ReadonlyArray<Word10> = [
+export const data: ReadonlyArray<WordEntry> = [
   { count: 5553722, word: 'i' },
   { count: 3995846, word: 'og' },
   { count: 3075887, word: 'det' },

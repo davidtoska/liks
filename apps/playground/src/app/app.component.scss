@@ -1,0 +1,24 @@
+mat-toolbar {
+  display: flex;
+  //justify-content: center;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.button-row {
+  margin: 0 auto;
+  width: 1200px;
+}
+
+main {
+  margin: 0 auto;
+  width: 1200px;
+  min-height: calc(100vh - 64px);
+  padding-top: 20px;
+  height: calc(100vh - 64px);
+}
