@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { data } from '../data';
+import { Liks, Word10 } from 'liks';
 
 @Component({
   selector: 'liks-playground-root',
@@ -8,8 +8,10 @@ import { data } from '../data';
 })
 export class AppComponent implements OnInit {
   title = 'playground';
-
   ngOnInit(): void {
-    console.log(data);
+    const l = Liks.score('asdf');
+    // Liks
+    Word10.validOrThrow();
+    console.log(this.title);
   }
 }
