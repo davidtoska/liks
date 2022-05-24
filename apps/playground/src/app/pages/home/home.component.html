@@ -3,8 +3,18 @@
   tekstens liks
 </h3>
 <ng-container *ngIf="score">
-  <h1>Score: {{ score.grade }}</h1>
-  <p class="mat-caption">Generated score with Math.random!</p>
+  <h1>Liks: {{ score.liks.grade }}</h1>
+  <p class="mat-caption">Category: {{ score.liks.description }}</p>
+  <p class="mat-caption">Sentences: {{ score.sentences }}</p>
+  <p class="mat-caption">Words: {{ score.wordCount }}</p>
+  <p class="mat-caption">Characters: {{ score.charCount }}</p>
+  <p class="mat-caption">Sections: TODO</p>
+  <p>
+    <b> Frequency: </b>
+    <ng-container *ngFor="let wStats of score.wordStats; let i = index">
+      {{ wStats.text }} ({{ wStats.count }}),
+    </ng-container>
+  </p>
 </ng-container>
 <mat-form-field class="text-input" appearance="fill" #inp>
   <mat-label>Text</mat-label>

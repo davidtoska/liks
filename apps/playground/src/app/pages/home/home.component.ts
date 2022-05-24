@@ -7,11 +7,13 @@ import { Liks } from 'liks';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  inputText = '';
-  score: Liks.Score['liks'] | null = null;
+  inputText =
+    'Du har rett til å være med på å bestemme på jobb. Det skal være faste møter hvor du kan si hva du mener, ha samtaler med personal eller arbeidsleder.';
+  score: Liks.Score | null = null;
 
   ngOnInit(): void {
     console.log(this.inputText);
+    this.calculateLiks();
   }
 
   onInputTextChange() {
@@ -19,8 +21,8 @@ export class HomeComponent implements OnInit {
   }
 
   calculateLiks() {
-    const eva = Liks.score(this.inputText);
-    this.score = eva.liks;
+    const score = Liks.score(this.inputText);
+    this.score = score;
     console.log(this.score);
   }
 }

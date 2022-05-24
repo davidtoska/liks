@@ -1,4 +1,4 @@
-<h1>List with gold-standard texts and their evaluations</h1>
+<h1>List of scored texts. (Find a goldstandard and compare later.)</h1>
 <style>
   mat-icon {
     transform: translateX(10px);
@@ -6,18 +6,20 @@
 </style>
 <ng-container *ngFor="let item of list">
   <mat-accordion>
-    <mat-expansion-panel>
+    <mat-expansion-panel expanded="true">
       <mat-expansion-panel-header>
-        <!--        <p>{{ item.name }}</p>-->
+        <!--          <mat-icon>verified</mat-icon></p>-->
         <mat-panel-title
-          >{{ item.name }}
-          <mat-icon>verified</mat-icon>
+          >{{ item.name }} (Liks score: {{ item.liks.grade }})
         </mat-panel-title>
         <!--        <mat-panel-description>Beskrivelse</mat-panel-description>-->
       </mat-expansion-panel-header>
       <div>
-        <p>Expected: {{ item.expected }}</p>
-        <p>Actual: {{ item.actual }}</p>
+        <p>Liks: {{ item.liks.grade }}</p>
+        <p>Category: {{ item.liks.description }}</p>
+        <p>Sentences: {{ item.sentences }}</p>
+        <p>Words: {{ item.wordCount }}</p>
+        <p>Characters: {{ item.charCount }}</p>
       </div>
       <p>{{ item.text }}</p>
     </mat-expansion-panel>
