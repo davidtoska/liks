@@ -1,1 +1,54 @@
-<p>Different statistics over 10000 most used words</p>
+<h1>Most used words: 10.000</h1>
+<p class="mat-caption">Sample-size: <b>150.000.000</b> words</p>
+<mat-form-field appearance="standard">
+  <mat-label>Search</mat-label>
+  <input
+    matInput
+    autocomplete="off"
+    (keyup)="applyFilter($event)"
+    placeholder=""
+    #input
+  />
+</mat-form-field>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="data">
+    <ng-container matColumnDef="rang">
+      <th mat-header-cell *matHeaderCellDef>Index</th>
+      <td mat-cell *matCellDef="let element">{{ element.rang }}</td>
+    </ng-container>
+    <ng-container matColumnDef="word">
+      <th mat-header-cell *matHeaderCellDef>Word</th>
+      <td mat-cell *matCellDef="let element">{{ element.word }}</td>
+    </ng-container>
+    <ng-container matColumnDef="abs">
+      <th mat-header-cell *matHeaderCellDef>Count (absolute)</th>
+      <td mat-cell *matCellDef="let element">{{ element.abs | number }}</td>
+    </ng-container>
+    <ng-container matColumnDef="rel">
+      <th mat-header-cell *matHeaderCellDef>Relative</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.rel | number: '1.1-6' }} %
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="cum">
+      <th mat-header-cell *matHeaderCellDef>Cumulative</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.cum | number: '1.1-6' }} %
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="showColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: showColumns"></tr>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="5">
+        No data matching the filter "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[100, 250, 500]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+</div>

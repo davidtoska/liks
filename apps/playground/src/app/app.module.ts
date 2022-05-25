@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { LibraryComponent } from './pages/library/library.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const routes: Routes = [
   { path: 'liks', component: HomeComponent },
@@ -42,6 +44,8 @@ const routes: Routes = [
     FormsModule,
     MatExpansionModule,
     MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
