@@ -30,9 +30,9 @@ export namespace Word10 {
     return stats;
   };
 
-  const WORD_STATS: ReadonlyArray<WordStats> = calculateStats(data);
+  export const WORD_STATS: ReadonlyArray<WordStats> = calculateStats(data);
 
-  interface WordStats {
+  export interface WordStats {
     readonly word: string;
     readonly length: number;
     readonly rang: number;
