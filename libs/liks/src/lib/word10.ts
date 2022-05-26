@@ -29,8 +29,20 @@ export namespace Word10 {
     });
     return stats;
   };
+  const createWordStatsMap = (stats: ReadonlyArray<WordStats>) => {
+    return stats.reduce((acc, curr) => {
+      acc.set(curr.word, curr);
+      return acc;
+    }, new Map<string, WordStats>());
+  };
 
   export const WORD_STATS: ReadonlyArray<WordStats> = calculateStats(data);
+  const WORD_STATS_MAP = createWordStatsMap(WORD_STATS);
+
+  export const getStats = (word: string): WordStats | undefined => {
+    const casted = word.toLowerCase();
+    return WORD_STATS_MAP.get(casted);
+  };
 
   export interface WordStats {
     readonly word: string;
@@ -56,6 +68,10 @@ export namespace Word10 {
     }
 
     if (WORD_STATS.length !== 10000) {
+      throw Error();
+    }
+
+    if (WORD_STATS_MAP.size !== 10000) {
       throw Error();
     }
 

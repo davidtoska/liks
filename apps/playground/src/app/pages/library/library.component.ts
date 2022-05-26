@@ -23,7 +23,7 @@ const goldList: ReadonlyArray<GoldStandard> = [
   },
   {
     name: 'Arbeidsmiljø_main',
-    text: 'Du har rett til å være med på å bestemme på jobb. Det skal være faste møter hvor du kan si hva du mener, ha samtaler med personal eller arbeidsleder.',
+    text: 'Vi kaller det som skjer på jobben for arbeidsmiljø. Arbeidsmiljø handler om hvordan en har det sammen med de andre som er på jobben. Alle på jobben lager arbeidsmiljøet sammen, er du glad blir de andre glade. De vi jobber med kaller vi for jobbvenner eller kolleger.',
   },
 ];
 
