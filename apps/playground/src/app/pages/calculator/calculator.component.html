@@ -1,0 +1,43 @@
+<h3 class="mat-title">
+  Skriv eller lim tekst under og klikk <b>Beregn Liks</b> for å få regnet ut
+  tekstens liks
+</h3>
+<ng-container *ngIf="score">
+  <h1>Liks: {{ score.liks.grade }}</h1>
+  <p class="mat-caption">Category: {{ score.liks.description }}</p>
+  <p class="mat-caption">Sentences: {{ score.sentences }}</p>
+  <p class="mat-caption">Words: {{ score.wordCount }}</p>
+  <p class="mat-caption">Characters: {{ score.charCount }}</p>
+  <p class="mat-caption">
+    Avrage <b>MUI</b> (Most used index): {{ score.averageMostUsedIndex }}
+  </p>
+  <p class="mat-caption">Sections: TODO</p>
+  <p>
+    <b> Word statistics: </b>
+    <ng-container *ngFor="let wStats of score.wordStats; let i = index">
+      {{ wStats.text }}: (count: {{ wStats.count }}, mui:
+      {{ wStats.mostUsedIndex }}) ,
+    </ng-container>
+  </p>
+</ng-container>
+<mat-form-field class="text-input" appearance="fill" #inp>
+  <mat-label>Text</mat-label>
+  <textarea
+    #textAreaElement
+    matInput
+    rows="10"
+    placeholder="Tekst som skal analyseres her"
+    required="true"
+    cdkTextareaAutosize
+    [(ngModel)]="inputText"
+    (ngModelChange)="onInputTextChange()"
+  ></textarea>
+</mat-form-field>
+<button
+  mat-raised-button
+  color="primary"
+  [disabled]="inputText.length < 1"
+  (click)="calculateLiks()"
+>
+  Beregn Liks
+</button>

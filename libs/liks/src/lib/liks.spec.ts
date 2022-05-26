@@ -78,4 +78,16 @@ describe('Score works', () => {
       expect(score.liks.grade).toEqual(item.actualLiks);
     });
   });
+
+  it('Get words works', () => {
+    const text = 'Hva tenker du?';
+    const words = Liks.getWords(text);
+    expect(words.length).toBe(3);
+    expect(words[2]).toBe('du');
+    expect(Liks.getWords('hei du.')[1]).toBe('du');
+    expect(Liks.getWords('hva tenker du, da?')[2]).toBe('du');
+    expect(Liks.getWords('Tenk du!')[1]).toBe('du');
+    expect(Liks.getWords('Tenk du!!')[1]).toBe('du');
+    expect(Liks.getWords('Tenk du!')[0]).toBe('Tenk');
+  });
 });

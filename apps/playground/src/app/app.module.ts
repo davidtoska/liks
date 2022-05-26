@@ -16,14 +16,16 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { CalculatorComponent } from './pages/calculator/calculator.component';
 
 const routes: Routes = [
-  { path: 'liks', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'liks-calculator', component: CalculatorComponent },
   { path: 'top-10', component: Word10Component },
   { path: 'text-library', component: LibraryComponent },
   {
     path: '**',
-    redirectTo: 'liks',
+    redirectTo: 'liks-calculator',
   },
 ];
 @NgModule({
@@ -32,6 +34,7 @@ const routes: Routes = [
     HomeComponent,
     Word10Component,
     LibraryComponent,
+    CalculatorComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { S } from './s';
+import { Word10 } from './word10';
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Liks {
@@ -47,6 +48,7 @@ export namespace Liks {
     readonly category: 'long' | 'short';
     readonly text: string;
     readonly count: number;
+    readonly mostUsedIndex: number;
   }
 
   export interface Score {
@@ -56,6 +58,7 @@ export namespace Liks {
     readonly charCount: number;
     readonly sentences: number;
     readonly sections: number;
+    readonly averageMostUsedIndex: number;
     readonly wordStats: ReadonlyArray<WordStats>;
     readonly liks: {
       readonly grade: number;
@@ -64,8 +67,14 @@ export namespace Liks {
     };
   }
 
-  const getWords = (text: string): ReadonlyArray<string> =>
-    text.trim().split(' ').filter(S.notEmpty);
+  const trimWordsRegEx = new RegExp('(!!|!|,|\\.|\\?)$', 'g');
+
+  export const getWords = (text: string): ReadonlyArray<string> =>
+    text
+      .trim()
+      .split(' ')
+      .filter(S.notEmpty)
+      .map((w) => w.replace(trimWordsRegEx, ''));
 
   const countWords = (text: string): number => getWords(text).length;
 
@@ -100,12 +109,15 @@ export namespace Liks {
     const unique = Array.from(new Set(words));
     const result = unique
       .map((word) => {
+        const word10Stats = Word10.getStats(word);
+        const mostUsedIndex = word10Stats?.rang ?? 10000;
         const category: WordStats['category'] =
           word.length > LONG_WORD_LIMIT ? 'long' : 'short';
         const stats: WordStats = {
           text: word,
           count: countMap.get(word) ?? 0,
           category,
+          mostUsedIndex,
         };
         return stats;
       })
@@ -136,14 +148,22 @@ export namespace Liks {
       wordCount / sentences + (longWordsCount * 100) / wordCount
     );
 
+    const wordStats = getWordStats(wordList);
+    const sumMui = wordStats.reduce((acc, curr) => {
+      console.log(curr.mostUsedIndex);
+      return acc + curr.mostUsedIndex;
+    }, 0);
+    const averageMostUsedIndex = Math.round(sumMui / wordStats.length);
+
     const scale = getScale(liksNumber);
     const { label, description } = scale;
     return {
       text,
       wordCount,
       charCount,
-      wordStats: getWordStats(wordList),
+      wordStats,
       longWordsCount,
+      averageMostUsedIndex,
       sections: 0,
       liks: { grade: liksNumber, label, description },
       sentences,
