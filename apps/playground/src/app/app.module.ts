@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'text-library', component: LibraryComponent },
   {
     path: '**',
-    redirectTo: 'liks',
+    redirectTo: 'liks-calculator',
   },
 ];
 @NgModule({
